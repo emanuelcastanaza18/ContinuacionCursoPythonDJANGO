@@ -1,0 +1,49 @@
+        Para crear unproyecto en Django
+Nos iremos a la terminal
+El primer paso es crear una carpeta eso lo realizamos con el siguiente comando 
+mkdir (Nombre de la carpeta que le queramos poner) Ejemplo mkdir productly
+Despues ingresamos a la carpeta con cd y nombre de la carpeta ejemplo cd productly
+Ya dentro de la carpeta instalaremos django de la siguiente manera:
+pipenv install django==4.1.7
+Despues ingresamos al ambiente virtual con el siguiente comando 
+pipenv shell
+Despues de eso le indicaremos a jango que cree un proyecto dentro de la carpeta
+django-admin (ingresar el argumento) (El nombre del proyecto) .  <- Si no colocamos el punto esta no la creara dentro de la carpeta que hemos creado y nos arrojara muchos problemas ejemplo:
+django-admin startproject productly .
+
+Despues de haber creado todo ingresaremos el siguiente comando
+python manage.py runserver
+nos muestra la siguiente informacion en la cual nos indica la version  y la ruta de donde se montara nuestra app
+Django version 4.1.7, using settings 'productly.settings'
+Starting development server at http://127.0.0.1:8000/
+
+    Como crear aplicaciones dentro de los proyectos
+Nos iremos a la terminal cancelamos el servicio de arriba e ingresamos 
+python manage.py startapp nombre de lo que querramos hacer ejemplo:
+python manage.py startapp productos
+
+    Ahora con los Views
+Primero debemos de terminar de instalar nuestra aplicacion de productos ya que solo instala la estructura de archivos mas no lo instala dentro de nuestro proyecto
+Esto se hace yendo al explorador de archivos y nos iremos a la carpeta de productos y despues nos iremos al archivo de apps.py y copiaremos el nombre de la clase en este caso seria: ProductosConfig , si en este caso nos muestra errores
+Debemos de ir al apartado del interprete y debemos de seleccionar en el cual nos encontramos trabajando en este caso seria productly, despues nos iremos a la carpeta de productly y seleccionamos el archivo llamado settings 
+debajo de la ultima linea que en este caso seria la 39 es donde debemos de instalar la aplicacion de productos y lo pasamos como string de la siguiente manera 'nombre_de_la_carpeta.nombre_del_archivo.y pegamos el nombre de la clase', Ejemplo
+productos.apps.ProductosConfig, si nos llegara a dar error con el autopep8 lo instalamos.
+
+Segundo Configurar las URL tanto padres como hijas
+Despues de haber configurado la primera parte nos iremos a la carpeta de productly ursl en esta parte ingresaremos los siguiente
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('ingreamos la ruta a la cual nosotros queremos registrar para que ejecute acciones/', include('recibe un string de donde se encuentra el archivo de url que nosotros vamos a importar.urls')) 
+    nota debemos de importar include dentro del paquete de django.urls 
+]
+Nota el ultimo argumento que ingresamos que en este caso seria urls lo crearemos dentro de la carpeta de productos
+Quedando de la siguente manera:
+
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('productos/', include('productos.urls')),
+]
+
+Tercero Trabajaremos con las views que le vamos a indicar que es lo que tiene que ejecutar la ruta, haremos un mapeo
