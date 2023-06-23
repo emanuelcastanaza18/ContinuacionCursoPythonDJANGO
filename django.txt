@@ -47,3 +47,32 @@ urlpatterns = [
 ]
 
 Tercero Trabajaremos con las views que le vamos a indicar que es lo que tiene que ejecutar la ruta, haremos un mapeo
+
+
+
+    Para las migraciones
+Esto siempre en la terminal
+En este caso como se creo una carpeta extra ingresaremos de la siguiente manera 
+cd nombre de la carpeta ejemplo cd productly
+despues ingresamos el siguiente comando python manage.py makemigrations el cual nos creara un archivo dentro de la carpeta makemigrations
+Despues ingresaremos python manage.py migrate  
+el siguiente paso es ir al navegador y buscar  sqlite3 browser
+
+Nota Importante:
+No borrar ningun dato jamas por lo que tengas pensado, depues puede haber conflicto
+
+        Panel  de administracion
+Para ejecutar nuestro servidor seleccionamos el siguiente comando  
+python manage.py runserver 
+Para crear un usuario se hace de la siguiente manera:
+python manage.py createsuperuser
+
+Username (leave blank to use 'ferdynand'): admin
+Email address: admin@pruebas.com
+Password: 
+Password (again): 
+This password is too short. It must contain at least 8 characters.
+This password is too common.
+This password is entirely numeric.
+Bypass password validation and create user anyway? [y/N]: y
+Superuser created successfully.
