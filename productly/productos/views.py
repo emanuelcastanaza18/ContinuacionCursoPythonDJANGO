@@ -1,4 +1,4 @@
-from django.http import Http404, HttpResponse, JsonResponse
+from django.http import Http404, HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, get_object_or_404
 
 from .forms import ProductForm
@@ -67,9 +67,19 @@ def detalle(requests, producto_id):
         return render(
             requests, 
             'detalle.html',
-            context={'producto': producto})
+            context={'producto': producto}
+        )
+
+
 def formulario(request):
-    form = ProductForm()
+    if request.method == 'POST':
+        form = ProductForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/productos')
+    else:
+        form = ProductForm()
+             
 
     return render(
          request,
